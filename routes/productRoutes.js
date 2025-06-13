@@ -8,13 +8,13 @@ import {
     updateProduct,
     deleteProduct
 } from '../controllers/productController.js';
+import validateProduct from '../middlewares/validateProduct.js';
 
 const router = express.Router();
 
 router.get('/', getAllProducts);
 router.get('/:id', getProductById);
-router.post('/', auth, adminOnly, createProduct);
-router.put('/:id', auth, adminOnly, updateProduct);
-router.delete('/:id', auth, adminOnly, deleteProduct);
+router.post('/', auth, adminOnly, validateProduct, createProduct);
+router.put('/:id', auth, adminOnly, validateProduct, updateProduct);
 
 export default router;
